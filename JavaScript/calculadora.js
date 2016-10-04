@@ -62,6 +62,9 @@ function escribir(caracter){
         alert("Nene, no puedes poner dos puntos en un numero");
     }else{
         if(caracter == '.'){
+	   if(resultado.innerHTML == ""){
+		caracter = "0.";	
+	    }
             puntoAvisador = true;
         }
         
