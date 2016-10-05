@@ -4,12 +4,14 @@ var seleccion;
 var sw = true;
 var Me;
 var puntoAvisador = false;
+var pResultado;
 
 window.onload = function(){
     var igual = document.getElementById("igual");
     var elementoMe = document.getElementById("me");
     var elementoRe = document.getElementById("re");
     var elementoCe = document.getElementById("ce");
+    var lupa = document.getElementById("lupa");
     
     numeraciones("cero");
     numeraciones("uno");
@@ -32,6 +34,9 @@ window.onload = function(){
     elementoMe.addEventListener("click", setMe);    
     elementoRe.addEventListener("click", getMe);    
     elementoCe.addEventListener("click", setMeNull);    
+    lupa.addEventListener("click", aumento);
+    
+    pResultado = document.getElementById("resultado");
 }
 /*numeraciones (numeros+operaciones) Añade los escuchadores de los numeros de manera automatica a través del mismo valor del botón*/
 function numeraciones(numerito){
@@ -47,32 +52,31 @@ function operaciones(operacion){
 }
 /* Funcion primerNumero se activa cuando pulsamos las teclas +, -, / o x guarda el tipo de operación que hayamos seleccionado y guardamos el numero que haya introducido en numeroA*/
 function primerNumero(operacion){
-    var numeroUNO = document.getElementById("resultado");
         seleccion = operacion;
-        numeroA = parseFloat(numeroUNO.innerHTML);
-        numeroUNO.innerHTML = "";
+        numeroA = parseFloat(pResultado.innerHTML);
+        pResultado.innerHTML = "";
         puntoAvisador = false;  
    
 }
 
 /*escribir - escribe lo que desees en el <p> de resultado. Tiene un sw que le indica si ya se ha realizado una operación, en caso de hacerlo, machaca la operación anterior  */
 function escribir(caracter){
-    var resultado = document.getElementById("resultado");
+    
     if(puntoAvisador == true && caracter == '.'){
         alert("Nene, no puedes poner dos puntos en un numero");
     }else{
         if(caracter == '.'){
-	   if(resultado.innerHTML == ""){
+	   if(pResultado.innerHTML == ""){
 		caracter = "0.";	
 	    }
             puntoAvisador = true;
         }
         
        if(!sw){
-        resultado.innerHTML = caracter;
+        pResultado.innerHTML = caracter;
         sw = true;
     }else{
-        resultado.innerHTML+=caracter; 
+        pResultado.innerHTML+=caracter; 
         
         }  
     }
@@ -84,7 +88,7 @@ function escribir(caracter){
 
 /* solucion -  funcion encargada de coger el segundo numero introducido, comprueba que en ambos campos haya algo, y realiza la operación selecionada con anterioridad*/
 function solucion(){
-    var resultado = document.getElementById("resultado");
+   
     numeroB = parseFloat(resultado.innerHTML);
     
     if(numeroA !="" && numeroB !=""){  
@@ -114,7 +118,7 @@ function solucion(){
 }
 /* Le pasa el valor a escribrir y cambia el sw a false para que cuando se escriba un número despues de mostrar el resultado, fuerza a la calculadora a borrar todo e inicializa el avisador del punto a false*/
 function final(valor){
-    document.getElementById("resultado").innerHTML = valor;
+    pResultado.innerHTML = valor;
     sw = false;
     puntoAvisador = false;
 }
@@ -125,15 +129,28 @@ function inicializarValores(){
 }
 
 function setMe(){
-    Me = document.getElementById("resultado").innerHTML;
+    Me = pResultado.innerHTML;
 }
 
 function getMe(){
-  document.getElementById("resultado").innerHTML = Me ;
+  if(Me!="" && Me!=undefined){
+    pResultado.innerHTML = Me ; 
+  }else{
+      alert("Nada en memoria");
+  }
+
    
 }
 
-
 function setMeNull(){
     Me = "";
+    pResultado.innerHTML = "";
+}
+
+function aumento(){
+    if(pResultado!="" && pResultado!=undefined )
+    var myWindow = window.open("", "", "width=200,height=100");
+    
+ myWindow.document.write('<h1>' + pResultado.innerHTML + '</h1>');
+    
 }
