@@ -128,10 +128,12 @@ function inicializarValores(){
     numeroB = "";
 }
 
+/* setMe - Añade a la variable global Me el valor de resultado */
 function setMe(){
     Me = pResultado.innerHTML;
 }
 
+/* getMe -  Comprueba que Me no sea nulo y lo escribe en resultado en caso de que no lo sea*/
 function getMe(){
   if(Me!="" && Me!=undefined){
     pResultado.innerHTML = Me ; 
@@ -139,17 +141,18 @@ function getMe(){
       alert("Nada en memoria");
   }
 
-   
 }
 
+/* setMeNull - Vuelve nulo los campos me y el resultado*/
 function setMeNull(){
     Me = "";
     pResultado.innerHTML = "";
 }
 
+/*aumento - Crea una ventana con el resultado en grande*/
 function aumento(){
     if(pResultado!="" && pResultado!=undefined )
-    var myWindow = window.open("", "", "width=200,height=100");
+    var myWindow = window.open("", "", "width=800,height=50");
     
  myWindow.document.write('<h1>' + pResultado.innerHTML + '</h1>');
     
