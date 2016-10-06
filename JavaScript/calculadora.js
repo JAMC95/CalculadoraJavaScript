@@ -5,7 +5,7 @@ var sw = true;
 var Me;
 var puntoAvisador = false;
 var pResultado;
-
+var operaAc = false; 
 window.onload = function(){
     var igual = document.getElementById("igual");
     var elementoMe = document.getElementById("me");
@@ -37,7 +37,9 @@ window.onload = function(){
     lupa.addEventListener("click", aumento);
     
     pResultado = document.getElementById("resultado");
+    
 }
+
 /*numeraciones (numeros+operaciones) Añade los escuchadores de los numeros de manera automatica a través del mismo valor del botón*/
 function numeraciones(numerito){
     var numero = document.getElementById(numerito);
@@ -52,15 +54,23 @@ function operaciones(operacion){
 }
 /* Funcion primerNumero se activa cuando pulsamos las teclas +, -, / o x guarda el tipo de operación que hayamos seleccionado y guardamos el numero que haya introducido en numeroA*/
 function primerNumero(operacion){
-        seleccion = operacion;
+    
+    if(pResultado!= ""){
         numeroA = parseFloat(pResultado.innerHTML);
-        pResultado.innerHTML = "";
+        seleccion = operacion;
         puntoAvisador = false;  
-   
+        operaAc = true;   
+    }       
+            
 }
 
 /*escribir - escribe lo que desees en el <p> de resultado. Tiene un sw que le indica si ya se ha realizado una operación, en caso de hacerlo, machaca la operación anterior  */
 function escribir(caracter){
+    //comprueba que se ha pulsado un botón operaciones, en caso afirmativo, borra y mete el nuevo numero
+    if(operaAc){
+        pResultado.innerHTML = "";
+        operaAc = false;
+    }
     
     if(puntoAvisador == true && caracter == '.'){
         alert("Nene, no puedes poner dos puntos en un numero");
@@ -91,7 +101,7 @@ function solucion(){
    
     numeroB = parseFloat(resultado.innerHTML);
     
-    if(numeroA !="" && numeroB !=""){  
+    if(numeroA!= "" && numeroB!= "" && operaAc!=true){  
     switch(seleccion){
         case "mas":{
             final(parseFloat(numeroA +numeroB));
@@ -135,10 +145,15 @@ function setMe(){
 
 /* getMe -  Comprueba que Me no sea nulo y lo escribe en resultado en caso de que no lo sea*/
 function getMe(){
+    //comprueba que se ha pulsado un botón operaciones, en caso afirmativo, borra y mete el nuevo numero
+  if(operaAc){
+        pResultado.innerHTML = "";
+        operaAc = false;
+    }
   if(Me!="" && Me!=undefined){
-    pResultado.innerHTML = Me ; 
+        pResultado.innerHTML = Me ; 
   }else{
-      alert("Nada en memoria");
+        alert("Nada en memoria");
   }
 
 }
