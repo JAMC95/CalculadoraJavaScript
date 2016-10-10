@@ -1,7 +1,6 @@
 var numeroA = "";
 var numeroB = "";
 var seleccion;
-var sw = true;
 var Me;
 var puntoAvisador = false;
 var pResultado;
@@ -82,9 +81,9 @@ function escribir(caracter){
             puntoAvisador = true;
         }
         
-       if(!sw){
+       if(pResultado.innerHTML == "" || pResultado.innerHTML == undefined){
         pResultado.innerHTML = caracter;
-        sw = true;
+        
     }else{
         pResultado.innerHTML+=caracter; 
         
@@ -129,8 +128,8 @@ function solucion(){
 /* Le pasa el valor a escribrir y cambia el sw a false para que cuando se escriba un número despues de mostrar el resultado, fuerza a la calculadora a borrar todo e inicializa el avisador del punto a false*/
 function final(valor){
     pResultado.innerHTML = valor;
-    sw = false;
-    puntoAvisador = false;
+    
+    
 }
 
 function inicializarValores(){
@@ -162,6 +161,7 @@ function getMe(){
 function setMeNull(){
     Me = "";
     pResultado.innerHTML = "";
+    puntoAvisador = false;
 }
 
 /*aumento - Crea una ventana con el resultado en grande*/
