@@ -5,6 +5,8 @@ var Me;
 var puntoAvisador = false;
 var pResultado;
 var operaAc = false; 
+
+
 window.onload = function(){
     var igual = document.getElementById("igual");
     var elementoMe = document.getElementById("me");
@@ -63,8 +65,9 @@ function primerNumero(operacion){
             
 }
 
-/*escribir - escribe lo que desees en el <p> de resultado. Tiene un sw que le indica si ya se ha realizado una operación, en caso de hacerlo, machaca la operación anterior  */
+/*escribir - escribe lo que desees, filtra si es un punto o un numero  */
 function escribir(caracter){
+    
     //comprueba que se ha pulsado un botón operaciones, en caso afirmativo, borra y mete el nuevo numero
     if(operaAc){
         pResultado.innerHTML = "";
@@ -74,18 +77,18 @@ function escribir(caracter){
     if(puntoAvisador == true && caracter == '.'){
         alert("Nene, no puedes poner dos puntos en un numero");
     }else{
-        if(caracter == '.'){
+     if(caracter == '.'){
 	   if(pResultado.innerHTML == ""){
 		caracter = "0.";	
 	    }
             puntoAvisador = true;
         }
         
-       if(pResultado.innerHTML == "" || pResultado.innerHTML == undefined){
+       if(pResultado.innerHTML != "" || pResultado.innerHTML != undefined){
+         pResultado.innerHTML+=caracter;  
+                
+       }else{
         pResultado.innerHTML = caracter;
-        
-    }else{
-        pResultado.innerHTML+=caracter; 
         
         }  
     }
@@ -128,6 +131,7 @@ function solucion(){
 /* Le pasa el valor a escribrir y cambia el sw a false para que cuando se escriba un número despues de mostrar el resultado, fuerza a la calculadora a borrar todo e inicializa el avisador del punto a false*/
 function final(valor){
     pResultado.innerHTML = valor;
+    operaAc = true;
     
     
 }
