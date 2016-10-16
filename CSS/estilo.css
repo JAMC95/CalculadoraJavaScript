@@ -1,12 +1,15 @@
 .fila{
     margin-bottom: 0.5em;
-    margin-left: 40%;
     
-}
-#resultado{
-    margin-left: 40%;
+    
 }
 
 .cajon{
     margin-top: 5%;
+}
+#resultado, .fila{
+    margin-left: 40%;
+}
+#resultado{
+    width: 13.5%;
 }
