@@ -44,7 +44,7 @@ window.onload = function(){
 /*numeraciones (numeros+operaciones) Añade los escuchadores de los numeros de manera automatica a través del mismo valor del botón*/
 function numeraciones(numerito){
     var numero = document.getElementById(numerito);
-    numero.addEventListener("click", function(){escribir(numero.innerHTML)});
+    numero.addEventListener("click", function(){escribir(this.innerHTML)});
 }
 /*Añade escuchadores a los operadores*/
 function operaciones(operacion){
@@ -55,7 +55,9 @@ function operaciones(operacion){
 }
 /* Funcion primerNumero se activa cuando pulsamos las teclas +, -, / o x guarda el tipo de operación que hayamos seleccionado y guardamos el numero que haya introducido en numeroA*/
 function primerNumero(operacion){
-    
+    if(numeroA!=""){
+        solucion();
+    }
     if(pResultado!= ""){
         numeroA = parseFloat(pResultado.innerHTML);
         seleccion = operacion;
@@ -166,6 +168,8 @@ function setMeNull(){
     Me = "";
     pResultado.innerHTML = "";
     puntoAvisador = false;
+    numeroA = "";
+    numeroB = "";
 }
 
 /*aumento - Crea una ventana con el resultado en grande*/
