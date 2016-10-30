@@ -1,3 +1,4 @@
 # CalculadoraJavaScript
 Try it yourself!
-https://github.com/JAMC95/CalculadoraJavaScript
+
+https://jamc95.github.io/CalculadoraJavaScript/
